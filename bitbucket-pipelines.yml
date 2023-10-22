@@ -1,0 +1,79 @@
+image: python:3.9
+
+definitions:
+  steps:
+    - step: &run-robot
+        name: "🧪 Back-End tests"
+        script:
+          - echo "Iniciando instalação das dependências para os testes"
+          - pip install --upgrade pip
+          - pip install robotframework
+          - pip install robotframework-faker
+          - pip install robotframework-requests
+          - pip install robotframework-jsonlibrary
+          - pip install python-dotenv
+          - pip install datetime
+          - echo "Dependências instaladas!"
+          - echo "Iniciando testes e2e com robot"
+          - robot -d ./Results ./src/Robot/Clients/Arco.robot
+
+        after-script:
+          - echo "Enviando report dos testes para o slack"
+          - robot ./src/Helpers/Curl_Slack.robot
+
+pipelines:
+  branches:
+    master:
+      #- step: *run-robot
+      - step: 
+          name: "🧪 Front-End tests"
+          deployment: PROD
+          script:
+            - echo "Iniciando instalação das dependências para os testes"
+            - pip install --upgrade pip
+            - pip install robotframework
+            - pip install robotframework-seleniumlibrary
+            - pip install robotframework-faker
+            - pip install python-dotenv
+            - pip install datetime
+            - echo "Dependências instaladas!"
+            - echo "Iniciando instalação do navegador"
+            - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+            - echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list
+            - apt update -y
+            - apt install -y gconf-service libasound2 libatk1.0-0 libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libxss1 fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils
+            - apt install -y google-chrome-stable
+            - echo "Navegador instalado!"
+            - echo "Iniciando testes e2e com robot"
+            - robot -d ./Results ./src/Selenium/Clients/Arco.robot
+
+          after-script:
+            - echo "Enviando report dos testes para o slack"
+            - robot ./src/Helpers/Curl_Slack.robot
+
+    development:
+      - step:
+          name: "🧪 Front-End tests"
+          deployment: DEV
+          script:
+            - echo "Iniciando instalação das dependências para os testes"
+            - pip install --upgrade pip
+            - pip install robotframework
+            - pip install robotframework-seleniumlibrary
+            - pip install robotframework-faker
+            - pip install python-dotenv
+            - pip install datetime
+            - echo "Dependências instaladas!"
+            - echo "Iniciando instalação do navegador"
+            - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+            - echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list
+            - apt update -y
+            - apt install -y gconf-service libasound2 libatk1.0-0 libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libxss1 fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils
+            - apt install -y google-chrome-stable
+            - echo "Navegador instalado!"
+            - echo "Iniciando testes e2e com robot"
+            - robot -d ./Results ./src/Selenium/Clients/Arco.robot
+
+          after-script:
+            - echo "Enviando report dos testes para o slack"
+            - robot ./src/Helpers/Curl_Slack.robot
