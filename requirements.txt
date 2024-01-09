@@ -1,0 +1,8 @@
+datetime==5.4
+robotframework==6.1.1
+robotframework-faker==5.0.0
+robotframework-seleniumlibrary==6.2.0
+robotframework-requests==0.9.6
+robotframework-tidy==4.8.0
+robotframework-jsonlibrary==0.5
+python-dotenv==1.0.0

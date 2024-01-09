@@ -1,9 +1,9 @@
 *** Settings ***
 Documentation       Arquivo dedicado a organização e chamadas dos casos de teste
 
-Resource            ../TestCases/Login.robot
+Resource            ../TestCases/Home.robot
 
 
 *** Test Cases ***
-Login
-    CT: Login com sucesso
+Home
+    CT: Acessar página home
