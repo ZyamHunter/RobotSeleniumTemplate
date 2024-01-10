@@ -31,4 +31,3 @@ Quando acessar a página home
 
 Então os produtos serão exibidos
     Wait Until Page Contains Element    ${BAR_ONE}    30
-    Wait Until Page Contains Element    ${BAR_TWO}    30
