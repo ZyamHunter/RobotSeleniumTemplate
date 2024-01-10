@@ -1,3 +1,5 @@
+[![Standard](https://github.com/ZyamHunter/RobotSeleniumTemplate/actions/workflows/standard.yaml/badge.svg)](https://github.com/ZyamHunter/RobotSeleniumTemplate/actions/workflows/standard.yaml)
+
 # Projeto de automação Robot e Selenium
 Projeto criado para rodar testes automatizados de aceitação (e2e) no front-end e no back-end, utilizando as tecnologias do Robot Framework e do Selenium. Os testes devem ser capazes de serem rodados localmente e na pipeline
 
@@ -38,6 +40,10 @@ Instale a ferramenta `virtualenv` para criar ambientes virtuais de aprendizado:
 ## 9. Instalar Node.js:
 - https://nodejs.org/en/download
  > Ao instalar, provavelmente vários pacotes adicionais serão instalados, como chocolatery, etc.
+
+## 10. Instalar dependências do Python
+> Primeiro ative o ambiente virtual para evitar erros de versão com outras bibliotecas instaladas
+- pip install -r requirements.txt
 
 <br/>
 
