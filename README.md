@@ -3,7 +3,7 @@ Projeto criado para rodar testes automatizados de aceitação (e2e) no front-end
 
 
 # robot e selenium template
-> Repositório de testes dedicados ao uso das mais variadas bibliotecas do robot framework, especificamente a rpaframework
+> Repositório de testes dedicados ao uso das mais variadas bibliotecas do robot framework com selenium
 
 # Configuração do Ambiente
 
