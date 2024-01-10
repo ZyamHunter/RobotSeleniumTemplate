@@ -25,6 +25,8 @@ env:
   dockerfilePath: "dockerfiles/Dockerfile"
   namespace: "robot-framework"
   value_stream: "robot-selenium"
+  BASE_URL: ${{ vars.BASE_URL }}
+  BASE_API: ${{ vars.BASE_API }}
 
 jobs:
   ci_web:
